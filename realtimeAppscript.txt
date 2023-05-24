@@ -1,0 +1,130 @@
+function doGet() {  
+ const template = HtmlService.createTemplateFromFile('dash');
+  var html = template.evaluate();
+  html.setTitle('Real Time - Company Name');
+  return html;  
+}
+
+
+function getInfoSS(){
+  var tableID = ['ga:ID','ga:ID2','ga:ID3','ga:ID4'];
+  var analyticsData;
+  var totalActive=[];
+  
+  for(var n=0;n<tableID.length;n++){
+    analyticsData = Analytics.Data.Realtime.get(tableID[n],'rt:activeUsers',{"dimensions":"rt:pageTitle,rt:pagePath","sort":"-rt:activeUsers","max-results":"2"});
+    totalActive[n]= analyticsData.totalsForAllResults['rt:activeUsers'];
+  }
+  const RT1=totalActive[0];
+  const RT2=totalActive[1];
+  const RT3=totalActive[2];
+  const RT4=totalActive[3];
+
+  var values ={
+        brand1: RT1,
+        brand2: RT2,
+        brand3: RT3,
+        brand4: RT4,
+      }
+  return values;
+}
+
+
+function getInfoHour(){
+  analyticsByHourSITE();
+      var lastUpdated = new Date();
+    dateString = changeDate(lastUpdated);
+
+  var sourceDashHour = sheet.getSheetByName('AllData');
+  var getData1 = sourceDashHour.getRange("O16:P39").getValues();
+  var getData2 = sourceDashHour.getRange("I16:J39").getValues();
+  var getData3 = sourceDashHour.getRange("M16:N39").getValues();
+  var getData4 = sourceDashHour.getRange("K16:L39").getValues();
+  var hourDataA = sourceDashHour.getRange("I16:I39").getValues();
+ 
+
+  var valueChart ={
+        hourA: hourDataA,
+        brand1: getData1,
+        brand2: getData2,
+        brand3: getData3,
+        brand4: getData4,
+        
+  }
+  return (valueChart);
+}
+
+
+
+const today = new Date();
+const startDate = Utilities.formatDate(today, Session.getScriptTimeZone(),
+      'yyyy-MM-dd');
+const endDate = Utilities.formatDate(today, Session.getScriptTimeZone(),
+      'yyyy-MM-dd');
+const sheet = SpreadsheetApp.openById("IDSPREADSHEET");
+const sourceAnalytics = sheet.getSheetByName("Analytics");
+const source = sheet.getSheetByName("Data");
+const tableID = ['ga:ID','ga:ID2','ga:ID3','ga:ID4'];
+const tableSite = ['BranName1','BrandName2','BrandName3','BrandName4'];
+const reportRealTime = [];
+const urlsRT = ["https://url1.com","https://url2.com","https://url3.com","https://url4.com",];
+
+
+function getRealTimeData() {
+  var analyticsData;
+  var totalActive;
+  source.clear();
+  for(var n=0;n<tableID.length;n++){
+    analyticsData = Analytics.Data.Realtime.get(tableID[n],'rt:activeUsers',{"dimensions":"rt:pageTitle,rt:pagePath","sort":"-rt:activeUsers","max-results":"15"});
+    totalActive= analyticsData.totalsForAllResults['rt:activeUsers'];
+    source.appendRow(["Total Active Users "+tableSite[n]+": ", totalActive]);
+    for(var i=0;i<analyticsData.rows.length;i++){
+      var lastUpdated = new Date();
+      dateString = changeDate(lastUpdated);
+      reportRealTime[i]=([lastUpdated,analyticsData.rows[i][0],urlsRT[n]+analyticsData.rows[i][1],analyticsData.rows[i][2]]);
+    } 
+    source.appendRow(["Date","Page", "URL", "Active Users"]);
+    lr = source.getLastRow(); 
+  source.getRange(lr+1,1,reportRealTime.length,4).setValues(reportRealTime);
+  }
+}
+
+function analyticsByHourSITE(){
+  const metric = 'ga:users';
+  const options = {
+    'dimensions': 'ga:dateHour',
+    'sort':'ga:dateHour'
+  };
+var report = [];
+var siteName;
+var dataReport=[];
+sourceAnalytics.clear();
+var lr;
+var k=1;
+sourceAnalytics.appendRow(["date","active users","site","Hour"]);
+  for(var i=0;i<tableID.length;i++){
+    report = Analytics.Data.Ga.get(tableID[i],startDate, endDate, metric, options);
+    siteName = tableSite[i];
+    dataReport=[];
+     for(var n=0; n<report.rows.length;n++){
+       k=k+1;
+       dataReport[n]=[report.rows[n][0],report.rows[n][1],siteName,"=right(a"+k+",2)"];
+     }
+     lr = sourceAnalytics.getLastRow();   
+     sourceAnalytics.getRange(lr+1,1,dataReport.length,4).setValues(dataReport);
+  }
+}
+
+
+function getScriptURL() {
+  return ScriptApp.getService().getUrl();
+}
+
+
+function changeDate(dateToChange){
+     var dateString= new Date(dateToChange).toUTCString();
+      dateString = dateString.split(' ').slice(0, 4).join(' ');
+    return dateString;
+}
+
+

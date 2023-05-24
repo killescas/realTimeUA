@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base target="_top">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>RealTime Traffic - Company Name</title>
+    <link rel="stylesheet" href="https://drive.google.com/uc?id=1tpynYXhyjtonvxA6Zt2XTQa_baSAw4lF" />
+    <link rel="shortcut icon" href="https://drive.google.com/uc?id=1pYM_tkaWiOLr_sreIWsZ08ERpc0UBERB" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" 
+    integrity="sha512-QEiC894KVkN9Tsoi6+mKf8HaCLJvyA6QIRzY5KrfINXYuP9NxdIkRQhGq3BZi0J4I7V5SidGM3XUQ5wFiMDuWg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" 
+    integrity="sha512-SUJFImtiT87gVCOXl3aGC00zfDl6ggYAw5+oheJvRJ8KBXZrr/TMISSdVJ5bBarbQDRC2pR5Kto3xTR0kpZInA==" crossorigin="anonymous" />
+    <style>
+      .content-wrapper .page-header h3 span {
+    font-size: 35px;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper">
+        <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+          <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+            <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href="www.google.com"><img src=[imagen logo] alt="logo" /></a>
+          </div>
+        </nav>
+        <div class="main-panel">
+          <div class="content-wrapper pb-0">
+            <div class="page-header flex-wrap">
+              <h3 class="mb-0"> Total Active Users <span class="pl-0 h2 pl-sm-2 text-muted d-inline-block" id="totalAU"></span>
+              </h3>
+              <div class="d-flex" id="test1">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-3 col-lg-12 stretch-card grid-margin">
+                <div class="row">
+                  <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                    <a href="[URL Brand 1]" target="_blank">
+                    <div class="card bg-warning">
+                      <div class="card-body px-3 py-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div class="color-card">
+                            <img src="[IMG BRAND 1]" style="width:70%;padding-left:20%;"/>
+                            <h1 class="text-black" style="font-size:2.8rem;" id="cardScmx"> 
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                  <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                    <a href="[URL BRAND 2]" target="_blank">
+                    <div class="card bg-danger">
+                      <div class="card-body px-3 py-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div class="color-card">
+                         
+                          <img src="[IMG BRAND 2]" style="width:70%;padding-left:20%;"/>
+                            <h1 class="text-white" style="font-size:2.8rem;" id="cardXtk"> 
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                  <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                    <a href="[URL BRAND 3]" target="_blank">
+                    <div class="card bg-primary">
+                      <div class="card-body px-3 py-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div class="color-card">
+                            <img src="[IMG BRAND 3]" style="width:70%;padding-left:20%;"/>
+                            <h1 class="text-white" style="font-size:2.8rem;" id="cardDap"> 
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                  <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                    <a href="[URL BRAND 4]" target="_blank">
+                    <div class="card bg-success">
+                      <div class="card-body px-3 py-4">
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div class="color-card">
+                            <img src="[IMG BRAND 4]" style="width:80%;padding-left:20%;"/>
+                            <h1 class="text-white" style="font-size:2.8rem;" id="card3DJ"> 
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-9 stretch-card grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-7">
+                        <h2 id="dateW"></h2>
+                      </div>
+                    </div>                   
+                    <div class="row my-3">
+                      <div class="col-sm-12">
+                        <div class="flot-chart-wrapper">
+                            <div id="flotChart" class="flot-chart">
+                              <!--<canvas id="barChart"></canvas>-->
+                              <canvas id="linearChart" class="chartjs-render-monitor" style="height:120% !important"></canvas>
+                              
+                            </div>
+                          </div>                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © </span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Source:  <a href="https://developers.google.com/analytics/devguides/reporting/realtime/v3/devguide" target="_blank">Real Time API </a>Google Analytics </span>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script>
+
+
+      window.addEventListener('load',()=>{
+        try {
+        google.script.run
+          .withSuccessHandler(loadData)
+          .getInfoSS();
+        }catch(error) {
+          Browser.msgBox(error.message);
+        }
+      })
+
+      window.addEventListener('load',()=>{
+         try {
+        google.script.run
+          .withSuccessHandler(loadChart)
+          .getInfoHour();
+        }catch(error) {
+          Browser.msgBox(error.message);
+        }
+      })
+
+      function loadData(values){
+        var sumActiveUsersANT= Number(document.querySelector("#totalAU").innerHTML);
+        var cardBrand1Ant =Number(document.querySelector("#cardScmx").innerHTML);
+        var cardBrand2Ant =Number(document.querySelector("#cardXtk").innerHTML);
+        var cardBrand3Ant =Number(document.querySelector("#card3DJ").innerHTML);
+        var cardBrand4Ant =Number(document.querySelector("#cardDap").innerHTML);
+
+        	frontBrand1 = values.brand1;
+	frontBrand2 = values.brand2;
+	frontBrand3 = values.brand3;
+	frontBrand4 = values.brand4;
+        	frontDate = new Date();
+
+        var sumActiveUsers = Number(frontBrand1)+Number(frontBrand2)+Number(frontBrand3)+Number(frontBrand4);
+        var cardXTK = document.getElementById('cardXtk');
+        var cardScmx = document.getElementById('cardScmx');
+        var card3DJ = document.getElementById('card3DJ');
+        var cardDap = document.getElementById('cardDap');
+        var cardDate = document.getElementById('dateW');
+        var cardTotal =document.getElementById('totalAU');
+        cardXtk.innerHTML = frontBrand1;
+        cardScmx.innerHTML = frontBrand2;
+        card3DJ.innerHTML = frontBrand3;
+        cardDap.innerHTML = frontBrand4;
+        cardDate.innerHTML = frontDate;
+        cardTotal.innerHTML = sumActiveUsers;  
+        console.log(sumActiveUsers.toLocaleString('en-US'));
+       
+        animateValue(cardTotal, sumActiveUsersANT, sumActiveUsers, 500);
+        animateValue(cardScmx, cardBrand1Ant, frontBrand1, 500);
+        animateValue(cardXTK, cardBrand2Ant, frontBrand2, 500);
+        animateValue(card3DJ, cardBrand3Ant, frontBrand3, 500);
+        animateValue(cardDap, cardBrand4Ant, frontBrand4, 500);
+      }
+
+setInterval(refresh,180000);
+
+  function refresh(){
+    try {
+        google.script.run
+          .withSuccessHandler(loadData)
+          .getInfoSS();
+        }catch(error) {
+          Browser.msgBox(error.message);
+        }
+  }
+
+setInterval(refreshChart,180000);
+
+  function refreshChart(){
+    try {
+        google.script.run
+          .withSuccessHandler(loadChart)
+          .getInfoHour();
+        }catch(error) {
+          Browser.msgBox(error.message);
+        }
+
+  }
+    function loadChart(valueChart){
+      chartBrand1 = valueChart.brand1;
+      chartBrand2 = valueChart.brand2;
+      chartBrand3 = valueChart.brand3;
+      chartBrand4 = valueChart.brand4;
+      chartHour = valueChart.hourA;
+
+      var data1 = [];
+      chartBrand1.forEach(function(item,index){
+        data1.push(item[1]);
+      });
+      var data2 = [];
+      chartBrand2.forEach(function(item,index){
+        data2.push(item[1]);
+      });  
+      var data3 = [];
+      chartBradn3.forEach(function(item,index){
+        data3.push(item[1]);
+      }); 
+      var data4 = [];
+      chartBrand4.forEach(function(item,index){
+        data4.push(item[1]);
+      });             
+      var ctx = document.getElementById("linearChart").getContext("2d");
+      var lineChart = new Chart(ctx,{
+        type:'line',
+        data:{
+          labels:chartHour,
+          datasets:[{
+            label:'BN1',
+            data:data1,
+            fill:true,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)'
+          },{
+            label:'BN2',
+            data:data2,
+            fill:true,
+            borderColor: 'rgba(255, 206, 86, 1)',
+            backgroundColor: 'rgba(255, 206, 86, 0.2)'                 
+          },{
+            label:'BN3',
+            data:data3,
+            fill:true,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)'                         
+          },{
+            label:'BN4',
+            data:data4,
+            fill:true,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)'                         
+          }]
+        },
+      options:{
+        responsive:true,
+        elements:{
+          line:{
+            tension:0.000001
+          }
+        },
+        title:{
+          display: true,
+          text:'Breakdown by hour'
+        },
+        scales:{
+          xAxes:[{
+            display:true,
+          }],
+          yAxes:[{
+            display:true,
+          }]
+        }
+      }
+
+      });
+    };
+function animateValue(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.innerHTML = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+
+
+
+    </script>
+  </body>
+</html>
